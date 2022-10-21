@@ -1,8 +1,14 @@
 import React from "react";
 import Hero from "../components/Hero";
-const Rooms = () => {
-  return <Hero hero="roomsHero"></Hero>;
-};
-//default props for using default classname in css
+import Banner from "../components/Banner";
+import { Link } from "react-router-dom";
+export default function Error() {
+  return (
+    <Hero hero="roomsHero">
+      <Banner title="our rooms">      <Link to="/" className="btn-primary">
+        return home
+      </Link></Banner>
 
-export default Rooms;
+    </Hero>
+  );
+}
