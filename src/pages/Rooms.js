@@ -1,14 +1,23 @@
 import React from "react";
-import Hero from "../components/Hero";
-import Banner from "../components/Banner";
-import { Link } from "react-router-dom";
-export default function Error() {
+import { RoomConsumer } from "../context";
+import Loading from "./Loading";
+import RoomsFilter from "./RoomsFilter";
+import RoomsList from "./RoomsList";
+export default function RoomContainer() {
   return (
-    <Hero hero="roomsHero">
-      <Banner title="our rooms">      <Link to="/" className="btn-primary">
-        return home
-      </Link></Banner>
-
-    </Hero>
+    <RoomConsumer>
+      {(value) => {
+        const { loading, setRoom, sortedRooms, rooms } = value;
+        if (loading) {
+          return <Loading />;
+        }
+        return (
+          <>
+            <RoomsFilter rooms={rooms} />
+            <RoomsList rooms={sortedRooms} setRoom={setRoom} />
+          </>
+        );
+      }}
+    </RoomConsumer>
   );
 }
